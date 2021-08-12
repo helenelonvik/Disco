@@ -1,0 +1,2 @@
+osource "C:/Users/helo/v1.6.0/nrf/boards/shields/*/Kconfig.defconfig"
+osource "C:/Users/helo/v1.6.0/zephyr/boards/shields/*/Kconfig.defconfig"

@@ -1,0 +1,85 @@
+#
+# Copyright (c) 2019 Nordic Semiconductor ASA
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+#
+# Copyright (c) 2018 Nordic Semiconductor ASA
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+menu "Sound"
+
+config APPLICATION_WORKQUEUE_STACK_SIZE
+	int "Application workqueue stack size"
+	default 4096
+
+config APPLICATION_WORKQUEUE_PRIORITY
+	int "Application workqueue priority"
+	default SYSTEM_WORKQUEUE_PRIORITY
+
+menu "Device and modem"
+
+config POWER_OPTIMIZATION_ENABLE
+	bool "Enable power optimization"
+	default y
+	select LTE_EDRX_REQ
+
+endmenu # Device
+
+menuconfig LIGHT_SENSOR
+	bool "Light sensor"
+	select BH1749 if BOARD_THINGY91_NRF9160NS
+	default y if BOARD_THINGY91_NRF9160NS
+
+endmenu
+
+menu "Zephyr Kernel"
+source "Kconfig.zephyr"
+endmenu
+
+## From UI
+
+config USE_UI_MODULE
+	bool "Enable UI module"
+	default y
+	help
+		Enable the User Interface module for user interaction on
+		development kit / Thingy91 hardware.
+
+menu "User Interface"
+	visible if USE_UI_MODULE
+
+config UI_BUZZER
+	bool "Enable buzzer"
+	default y if BOARD_THINGY91_NRF9160NS
+	select PWM if BOARD_THINGY91_NRF9160NS
+	select PWM_1 if BOARD_THINGY91_NRF9160NS
+
+if UI_BUZZER
+
+config UI_BUZZER_PWM_DEV_NAME
+	string "PWM device name for buzzer"
+	default "PWM_1" if BOARD_THINGY91_NRF9160NS
+
+config UI_BUZZER_PIN
+	int "Buzzer pin number"
+	default 28 if BOARD_THINGY91_NRF9160NS
+
+config UI_BUZZER_MIN_FREQUENCY
+	int "Minimum buzzer frequency"
+	default 100
+
+config UI_BUZZER_MAX_FREQUENCY
+	int "Maximum buzzer frequency"
+	default 10000
+
+endif # UI_BUZZER
+
+endmenu
+
+module = UI
+module-str = User Interface
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"

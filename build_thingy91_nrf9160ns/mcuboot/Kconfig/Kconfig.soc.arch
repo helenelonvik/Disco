@@ -1,0 +1,2 @@
+osource "C:/Users/helo/v1.6.0/zephyr/soc/$(ARCH)/Kconfig"
+osource "C:/Users/helo/v1.6.0/zephyr/soc/$(ARCH)/*/Kconfig"
