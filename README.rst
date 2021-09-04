@@ -1,16 +1,20 @@
-.. _hello_world:
+.. _disco:
 
-Hello World
+Disco
 ###########
 
 Overview
 ********
 
-A simple sample that can be used with any :ref:`supported board <boards>` and
-prints "Hello World" to the console.
+A simple sample that can be used on thingy91 to make the led lights flash, and the buzzer play "take on me".
 
 Building and Running
 ********************
+
+This application can be build and flashed by using VScode extention from nordic. 
+.. Thingy must be connected to a dev kit
+
+or
 
 This application can be built and executed on QEMU as follows:
 
@@ -23,11 +27,3 @@ This application can be built and executed on QEMU as follows:
 
 To build for another board, change "qemu_x86" above to that board's name.
 
-Sample Output
-=============
-
-.. code-block:: console
-
-    Hello World! x86
-
-Exit QEMU by pressing :kbd:`CTRL+A` :kbd:`x`.
